@@ -9,9 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@linways/table-to-excel": "^1.0.4",
     "@next/font": "13.1.6",
+    "dom-parser": "^0.1.6",
+    "html-table-to-json": "^1.0.0",
+    "jsdom": "^21.1.0",
+    "mathjs": "^11.5.1",
     "next": "13.1.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "tabletojson": "^2.0.7"
   }
 }
