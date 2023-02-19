@@ -1,0 +1,160 @@
+@font-face {
+    font-family: 'magrabold';
+    src: url('../fonts/magra-bold-webfont.woff2') format('woff2'),
+         url('../fonts/magra-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'magraregular';
+    src: url('../fonts/magra-regular-webfont.woff2') format('woff2'),
+         url('../fonts/magra-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+* {
+	margin: 0;
+	padding: 0;
+
+	font-family: 'magraregular', Inter, sans-serif;
+}
+
+:root {
+	--tbody-bg:#1D1F22;
+	--theader-bg:#222427;
+
+	--twhite:#DDEBFF;
+	--tdark-blue: #002865;
+	--tgrey:#6A647C;
+	--tlight-blue:#005DF6;
+	--tbtn-selected:#1C1B1F;
+}
+
+body {
+	background-color: var(--tbody-bg);
+}
+header {
+	background-color: var(--theader-bg);
+	width: 100%;
+	height: 88px;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+.header-container {
+	margin: 0 auto;
+	position: relative;
+/*	background-color: darkred;*/
+	max-width: 1540px;
+	width: 100%;
+/*	margin: 0 190px;*/
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header-calendar {
+	color: white;
+	align-self: center;
+	left: 50%;
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	
+}
+.calendar-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px;
+	line-height: 24px;
+	user-select: none;
+	cursor: pointer;
+	padding: 8px;
+	top: 0px;
+	border-radius: 4px;
+	transition: 0.1s;
+}
+.calendar-item:hover {
+	background-color: var(--tbody-bg);
+}
+
+.weekend-item {
+	color: grey;
+}
+
+.today-ci {
+	font-weight: bold;
+}
+
+.selected-ci {
+	position: relative;
+	top: -8px;
+}
+.selected-ci:before {
+	content: '';
+	background-color: var(--tlight-blue);
+	position: absolute;
+	bottom: -8px;
+	border-radius: 1px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+}
+
+.logo {
+	font-family: 'magrabold';
+	color: white;
+	font-size: 28px;
+	margin-left: 28px;
+	user-select: none;
+	cursor: pointer;
+/*	font-weight: bold;*/
+}
+.header-today p {
+	color: white;
+	font-size: 20px;
+	line-height: 24px;
+	
+}
+.header-today p b {
+	text-transform:capitalize;
+}
+
+
+.header-main-btns-container {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+.header-btn {
+	background-color: transparent;
+	border: 0;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 12px;
+	gap: 8px;
+	cursor: pointer;
+	transition: 0.1s;
+}
+.header-btn:hover {
+	background-color: var(--tbody-bg);
+}
+.header-btn span {
+	color: white;
+}
+.btn-text {
+	color: var(--twhite);
+	font-size: 20px;
+	line-height: 24px;
+}
+.selected-btn {
+	background-color: var(--tbtn-selected);
+}
