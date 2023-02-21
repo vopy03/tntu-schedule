@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import Script from 'next/script'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import s from '@/styles/style.module.css'
 import WeekItem from '@/components/Header/WeekItem'
 import HButtons from '@/components/Header/HButtons'
+import Schedule from '@/components/Schedule'
 // import gicons from '@/styles/gicons.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -38,7 +37,12 @@ export default function Home() {
     </header>
     <main>
         <div className="wrap">
-            
+            <div className="schedule">
+            {/* <span class="material-icons-outlined">radio_button_checked</span> */}
+
+            <Schedule />
+
+            </div>
         </div>
     </main>
     </>

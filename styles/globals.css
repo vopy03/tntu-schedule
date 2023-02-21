@@ -213,3 +213,132 @@ background-color: var(--tbtn-selected);
 .header-space {
   width: 55px;
 }
+
+
+
+
+
+.wrap {
+  position: relative;
+  /* margin: 0 190px; */
+  height: calc(100vh - 88px);
+  display: flex;
+  justify-content: center;
+}
+
+.schedule {
+  /* background-color: darkblue; */
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.material-icons-outlined {
+  user-select: none;
+}
+
+.schedule-list li {
+  list-style: none;
+}
+.schedule-item {
+  position: relative;
+  display: flex;
+  gap: 46px;
+  margin-bottom: 56px;
+}
+.schedule-item .timeline{
+  display: flex;
+  align-items: center;
+  gap:8px;
+}
+.schedule-item:first-of-type:before {
+  /* background-color: blue; */
+  top: 50%;
+  height: 118%;
+}
+.schedule-item:last-of-type:before {
+  /* background-color: green; */
+  top: -80%;
+  height: 118%;
+}
+.schedule-item:before {
+  position: absolute;
+  content: '';
+  background-color: white;
+  width: 2px;
+  left: 81.5px;
+  height: 200%;
+
+}
+
+.subject-box {
+  color: black;
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
+  padding: 16px 20px;
+}
+
+.subject-box-title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  margin-bottom: 4px;
+}
+.subject-box-bottom-line {
+  color: var(--tgrey);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.subject-box-bottom-line .material-icons-outlined {
+  font-size: 14px;
+}
+
+.subject-type, .subject-venue {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.timeline {
+  display: flex;
+  /* gap: 8px; */
+}
+
+.timeline-time {
+  width: 56px;
+  margin-right: 12px;
+  text-align: center;
+}
+
+.timeline-time-start {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+}
+.timeline-time-end {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #A8A8A8;
+}
+
+.timeline .material-icons-outlined {
+  box-shadow:inset 0px 0px 0px 14px var(--tbody-bg);
+  border: solid 4px var(--tbody-bg);
+  /* border: red solid 2px; */
+  border-radius: 50%;
+  z-index: 1;
+  position: relative;
+  left: -9.5px;
+}
+
+.small-timeline-icon {
+  position: relative;
+  margin-right: 12px;
+  left: -3.5px !important;
+  font-size: 12px !important;
+}
