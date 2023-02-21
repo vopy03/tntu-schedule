@@ -242,10 +242,15 @@ background-color: var(--tbtn-selected);
   list-style: none;
 }
 .schedule-item {
+  
+  margin-bottom: 56px;
+}
+.schedule-item, .schedule-item-container {
   position: relative;
   display: flex;
+}
+.schedule-item-container {
   gap: 46px;
-  margin-bottom: 56px;
 }
 .schedule-item .timeline{
   display: flex;
@@ -259,7 +264,7 @@ background-color: var(--tbtn-selected);
 }
 .schedule-item:last-of-type:before {
   /* background-color: green; */
-  top: -80%;
+  top: -70%;
   height: 118%;
 }
 .schedule-item:before {
@@ -268,16 +273,19 @@ background-color: var(--tbtn-selected);
   background-color: white;
   width: 2px;
   left: 81.5px;
-  height: 200%;
+  height: 100%;
 
 }
 
 .subject-box {
   color: black;
   border-radius: 8px;
-  background-color: white;
+  background-color: #ffffffe0;
   position: relative;
   padding: 16px 20px;
+}
+.current-box {
+  background-color: white;
 }
 
 .subject-box-title {
@@ -300,6 +308,10 @@ background-color: var(--tbtn-selected);
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.subject-type-text {
+  text-transform: capitalize;
 }
 
 .timeline {

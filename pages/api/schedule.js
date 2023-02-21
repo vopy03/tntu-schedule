@@ -50,7 +50,7 @@ function tableToJSON(DOMTable) {
         var isTrueRow = false // service variable for understanding whether the current element is True | цілісний
 
         // row incompleteness detection
-        try { isTrueRow = tr.children[0].getAttribute('class') === "LessonNumber" ? true : false}
+        try { isTrueRow = tr.children[0].classList.contains("LessonNumber") ? true : false}
         catch(e) {}
 
         // row IDs that have an the rowspan attribute detection

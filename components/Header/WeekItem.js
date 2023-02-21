@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function WeekItem(props) {
 
@@ -22,6 +22,11 @@ export default function WeekItem(props) {
 
     //STATES 
     const [selectedDay, setCurrentDay] = useState(weekday);
+
+    useEffect(() => {
+      props.changeDay(selectedDay)
+    })
+    
 
 
     return (
