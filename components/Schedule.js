@@ -21,8 +21,7 @@ export default function  Schedule(props) {
         setDayLong(props.dayLong)
         if(prevDayLong != dayLong) {
             setScheduleList([])
-            let d = new Date()
-            d.setDate(d.getDate() + props.selectedDay-1)
+            d.setDate(firstDayOfWeek.getDate() + props.selectedDay-1)
             setD(d)
             setPrevSelectedDay(dayLong)
         }
@@ -48,7 +47,9 @@ export default function  Schedule(props) {
 
     
     if(data != null && scheduleList.length == 0) {
-        if( weekday != 5 && weekday != 6 ) {
+
+        if( weekday != 4 && weekday != 5 ) {
+            try{
             data.forEach(s => {
                 const weekSelection = firstWeek ? "0" : "1"
                 const subjectTime = s[""].split(' ')[1].split("-")
@@ -66,8 +67,7 @@ export default function  Schedule(props) {
                 endDate.setHours(endHour, endMinute, 0)
                 if(props.d.valueOf() > startDate.valueOf() && props.d.valueOf() < endDate.valueOf()) isCurrent = true
 
-
-
+                
                 if(s[dayLong][weekSelection].toString().trim() !== "")  {
                     let splitted = s[dayLong][weekSelection].trim().split('  ').filter((w) => w != '')
                     const subjectName = splitted[0]
@@ -95,6 +95,8 @@ export default function  Schedule(props) {
             })
 
             setScheduleList(items);
+
+            } catch(e) {}
 
         }
 
