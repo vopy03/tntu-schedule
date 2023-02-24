@@ -27,6 +27,8 @@ export default function Home() {
     setDomLoaded(true);
   }, []);
 
+  
+    // function for switching the selected day. Called from a WeekItem component
   const changeDay = (selectedDay) => {
 
     let thisDay = new Date(firstDayOfWeek);
@@ -61,8 +63,8 @@ export default function Home() {
     <main>
         <div className="wrap">
             <div className="schedule">
-            {/* <span class="material-icons-outlined">radio_button_checked</span> */}
-            {domLoaded && (
+            {// render the Schedule component only when the entire DOM is loaded. This is required for localStorage to work
+            domLoaded && (
             <Schedule d={d} dayLong={currentDayLong} selectedDay={selectedDay} />
             )}
 

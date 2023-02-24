@@ -14,6 +14,12 @@ export default function  Schedule(props) {
     let d = new Date(Date.parse(dd))
     let weekday = d.getDay() == 0 ? 6 : d.getDay()-1
     let firstDayOfWeek = new Date(d.getFullYear(), d.getMonth(), d.getDate() - weekday); // Find the first day of the week
+
+    // // fixing weekday value for further conditions
+    // d.setDate(firstDayOfWeek.getDate() + props.selectedDay-1)
+    // weekday = d.getDay() == 0 ? 6 : d.getDay()-1
+
+    // an array that will store ScheduleItem components
     let items = []
 
     let firstWeek = false
@@ -21,7 +27,7 @@ export default function  Schedule(props) {
         setDayLong(props.dayLong)
         if(prevDayLong != dayLong) {
             setScheduleList([])
-            d.setDate(firstDayOfWeek.getDate() + props.selectedDay-1)
+            d.setDate(firstDayOfWeek.getDate() + props.selectedDay)
             setD(d)
             setPrevSelectedDay(dayLong)
         }
@@ -30,8 +36,10 @@ export default function  Schedule(props) {
     if(data == null) {
         // condition for checking local storage
         if (typeof window !== "undefined") {
-        
+            
             if(localStorage.getItem("tntu-schedule") === null) {
+
+                // getting data from inner API
                 axios.get("/api/schedule?url=https://tntu.edu.ua/?p=uk/schedule&s=fis-sbs32")
                     .then((res) => {
                     setData(res.data)
@@ -40,21 +48,18 @@ export default function  Schedule(props) {
             } else setData(JSON.parse(localStorage.getItem("tntu-schedule")))
         }
     }
-
-    //get date 
-
     
-
     
     if(data != null && scheduleList.length == 0) {
-
-        if( weekday != 4 && weekday != 5 ) {
+        // console.log(weekday +" | "+ dayLong)
+        if( weekday != 5 && weekday != 6 ) {
             try{
             data.forEach(s => {
                 const weekSelection = firstWeek ? "0" : "1"
                 const subjectTime = s[""].split(' ')[1].split("-")
 
                 let isCurrent = false;
+
 
                 // is current ?
                 let startDate = structuredClone(d);
