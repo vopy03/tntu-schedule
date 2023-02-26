@@ -14,7 +14,7 @@ export default function ScheduleItem(props) {
           </div>
           <div className='schedule-subject'>
 
-            <div className={`subject-box ${ props.isCurrent ? `current-box` : ''}` }>
+            <div className={`subject-box ${ !props.isPassed && `current-box`}` }>
               <h3 className='subject-box-title'>{props.sName}</h3>
               <p className='subject-box-bottom-line'>
                 <span className='subject-type'>

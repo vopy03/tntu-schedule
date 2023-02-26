@@ -9,20 +9,30 @@ export default function  Schedule(props) {
     const [prevDayLong, setPrevSelectedDay] = useState(props.dayLong)
     const [scheduleList, setScheduleList] = useState([])
     const [data, setData] = useState(null)
-    const [dd, setD] = useState(props.d)
+    const [dd, setD] = useState(props.d) // local d ( Date() )
 
     let d = new Date(Date.parse(dd))
     let weekday = d.getDay() == 0 ? 6 : d.getDay()-1
     let firstDayOfWeek = new Date(d.getFullYear(), d.getMonth(), d.getDate() - weekday); // Find the first day of the week
 
-    // // fixing weekday value for further conditions
-    // d.setDate(firstDayOfWeek.getDate() + props.selectedDay-1)
-    // weekday = d.getDay() == 0 ? 6 : d.getDay()-1
-
     // an array that will store ScheduleItem components
     let items = []
 
-    let firstWeek = false
+    const pushItem = (subjectTime, subjectName, sType, sVenue, isCurrent, isPassed) => {
+        items.push(<ScheduleItem 
+            sTime={subjectTime} 
+            sName={subjectName} 
+            sType={sType} 
+            sVenue={sVenue} 
+            isCurrent={isCurrent}
+            isPassed={isPassed}/>)
+            
+        // console.log(subjectTime[0]+"-"+subjectTime[1] + " | " + subjectName + " | " + sType +" | "+ sVenue) 
+    }
+
+    let firstWeek = false // in future this info will be known in data 
+
+
     useEffect(() => {
         setDayLong(props.dayLong)
         if(prevDayLong != dayLong) {
@@ -72,6 +82,11 @@ export default function  Schedule(props) {
                 endDate.setHours(endHour, endMinute, 0)
                 if(props.d.valueOf() > startDate.valueOf() && props.d.valueOf() < endDate.valueOf()) isCurrent = true
 
+
+                let isPassed = false
+                // is passed ?
+                if(props.d.valueOf() > endDate.valueOf()) isPassed = true
+
                 
                 if(s[dayLong][weekSelection].toString().trim() !== "")  {
                     let splitted = s[dayLong][weekSelection].trim().split('  ').filter((w) => w != '')
@@ -79,8 +94,7 @@ export default function  Schedule(props) {
                     const sType = splitted[1].split(' ')[0]
                     const sVenue = splitted[1].split(' ')[1]
 
-                    // console.log(subjectTime[0]+"-"+subjectTime[1] + " | " + subjectName + " | " + sType +" | "+ sVenue)
-                    items.push(<ScheduleItem sTime={subjectTime} sName={subjectName} sType={sType} sVenue={sVenue} isCurrent={isCurrent}/>)
+                    pushItem(subjectTime, subjectName, sType, sVenue, isCurrent, isPassed)
                 }
                 else {
                     if(s[dayLong].toString().trim() !== "")  {
@@ -89,9 +103,7 @@ export default function  Schedule(props) {
                         const sType = splitted[1].split(' ')[0]
                         const sVenue = splitted[1].split(' ')[1]
 
-                        items.push(<ScheduleItem sTime={subjectTime} sName={subjectName} sType={sType} sVenue={sVenue} isCurrent={isCurrent}/>)
-
-                        // console.log(subjectTime[0]+"-"+subjectTime[1] + " | " + subjectName + " | " + sType +" | "+ sVenue) 
+                        pushItem(subjectTime, subjectName, sType, sVenue, isCurrent, isPassed)
                     }
                 }
 

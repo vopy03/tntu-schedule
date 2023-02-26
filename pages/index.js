@@ -4,20 +4,22 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import WeekItem from '@/components/Header/WeekItem'
 import HButtons from '@/components/Header/HButtons'
-import Schedule from '@/components/Schedule'
+import Schedule from '@/components/Schedule/Schedule'
 // import gicons from '@/styles/gicons.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 // const d = new Date(Date.now()+(86400000)*2);
-const d = new Date();
-
-let weekday = d.getDay() == 0 ? 6 : d.getDay()-1
-let firstDayOfWeek = new Date(d.getFullYear(), d.getMonth(), d.getDate() - weekday); // Find the first day of the week
-const weekday_text = d.toLocaleString('uk-UA', {weekday: 'long'})
-const dateMonth = d.toLocaleString('uk-UA', {day: 'numeric', month: 'long',})
+// const d = new Date();
 
 export default function Home() {
+
+  const [d, setValue] = useState(new Date());
+
+  let weekday = d.getDay() == 0 ? 6 : d.getDay()-1
+  let firstDayOfWeek = new Date(d.getFullYear(), d.getMonth(), d.getDate() - weekday); // Find the first day of the week
+  const weekday_text = d.toLocaleString('uk-UA', {weekday: 'long'})
+  const dateMonth = d.toLocaleString('uk-UA', {day: 'numeric', month: 'long',})
 
   const [domLoaded, setDomLoaded] = useState(false);
   const [currentDayLong, setCurrentDayLong] = useState(d.toLocaleString('uk-UA', {weekday: 'long'}).replace('ʼ',`'`));
@@ -25,6 +27,15 @@ export default function Home() {
 
   useEffect(() => {
     setDomLoaded(true);
+
+    // const interval = setInterval(() =>  {
+    //   setValue(new Date())
+    //   console.log(d.getSeconds())
+    // }, 1000);
+    
+    // return () => {
+    //   clearInterval(interval);
+    // };
   }, []);
 
   
@@ -35,8 +46,9 @@ export default function Home() {
     thisDay.setDate(thisDay.getDate() + selectedDay);
     setCurrentDayLong(thisDay.toLocaleString('uk-UA', {weekday: 'long'}).replace('ʼ',`'`))
     setSelectedDay(selectedDay)
-
   }
+
+  
 
   return ( 
     <>
