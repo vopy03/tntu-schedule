@@ -201,12 +201,14 @@ function complicatedTableToJSON(DOMTable) {
       try {    
         // if(tr.children[i].getAttribute('colspan') != null) firstElemInDay = false
 
-        // if(!firstElemInDay && tr.children[i].getAttribute('rowspan') != null) rowspanOffset++
+        if(!firstElemInDay && tr.children[i].getAttribute('rowspan') == null) rowspanOffset--
         
         // if(firstElemInDay) rowspanOffset++
         
         // row IDs that have an the rowspan attribute detection
-        try { 
+        try {
+          console.log("| i: "+i+" | rIDs: "+obj.rowspansIDs+" | accomplished: "+accomplishedElement+ "| altAccomplished: "+
+          (tr.children[i].getAttribute('rowspan') != null && tr.children[i].getAttribute('colspan') != null))
           obj.rowspansIDs = ( 
             (tr.children[i].getAttribute('rowspan') != null && tr.children[i].getAttribute('colspan') != null) ||
             (firstElemInDay && tr.children[i+1].getAttribute('rowspan') != null && tr.children[i].getAttribute('rowspan') != null)
@@ -285,16 +287,19 @@ function complicatedTableToJSON(DOMTable) {
       for(var key = 2; key< objKeys.length; key++) {
         // console.log([headers[rIDs[rIDs.length-1]+1-2+key]])
         if(multiple_rIDs) {
+          if(rIDs[0] != 0) rIDs.unshift(0)
           for(var n=0; n < rIDs.length;n++) {
+            // console.log("| rowId(i): "+i+" | rID: "+rIDs[n]+" | rIDs[n]-1+key: "+ (rIDs[n]-1+key)+" | day than changes: "+headers[rIDs[n]-1+key])
             if(rIDs[n+1] == rIDs[n]+1) continue
             else {
-
+              console.log("change in that row")
               //including info in false rows into previous true row
               if(rIDs[n]-1+key < headers.length)
                 tmp[i-1][headers[rIDs[n]-1+key]] = {"0":tmp[i-1][headers[rIDs[n]-1+key]],"1":tmp[i][objKeys[key]]}
             }
-            // console.log(tmp[i-1][""]+" | "+"day than changes: "+headers[rIDs[n]-1+key])
+            // console.log(tmp[i-1][""]+" | day than changes: "+headers[rIDs[n]-1+key])
           }
+
         } else {
           let plus;
           if(key >= rIDs) plus = 1
@@ -309,7 +314,7 @@ function complicatedTableToJSON(DOMTable) {
       
       continue
     }
-    
+    console.log(rIDs)
     // row incompleteness detection 
     if(tmp[i].rowspansIDs !=='') nextRowFalse = true
     else nextRowFalse = false
