@@ -1,13 +1,13 @@
 import Head from 'next/head'
 import { useEffect, useState } from "react"
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
+// import { Inter } from '@next/font/google'
 import WeekItem from '@/components/Header/WeekItem'
 import HButtons from '@/components/Header/HButtons'
 import Schedule from '@/components/Schedule/Schedule'
 // import gicons from '@/styles/gicons.css'
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 // const d = new Date(Date.now()+(86400000)*2);
 // const d = new Date();
